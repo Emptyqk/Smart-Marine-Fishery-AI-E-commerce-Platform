@@ -111,10 +111,10 @@ export default {
     const clickSpecs = (item, val) => {
       if (val.disabled) return false
       // 选中与取消选中逻辑
-      if (val.selected) {
+      if(val.selected){
         val.selected = false
-      } else {
-        item.values.forEach(bv => { bv.selected = false })
+      }else{
+        item.values.forEach(valItem => valItem.selected = false)
         val.selected = true
       }
       // 点击之后再次更新选中状态

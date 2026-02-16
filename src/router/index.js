@@ -83,7 +83,8 @@ const router = createRouter({
       path:'/login',
       name:'login',
       component: Login,
-    }
+    },
+    
   ],
   scrollBehavior:()=>{
     return {

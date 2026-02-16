@@ -15,7 +15,18 @@ defineProps({
               <p class="price">&yen;{{ good.price }}</p>
             </RouterLink>
 </template>
+<!-- .goods-item 上下内边距：20px + 20px = 40px
+图片高度：160px
+三个 <p> 标签，每个都有 padding-top: 10px，共计 30px
+  三个 <p> 的内容高度：
 
+名称（.name）：字体 16px，假设行高 1.5 ≈ 24px
+
+描述（.desc）：固定高度 29px
+
+价格（.price）：字体 20px，假设行高 1.5 ≈ 30px
+40 + 160 + 30 + 24 + 29 + 30 = 313px 
+-->
 <style lang="scss">
 .goods-item {
       display: block;

@@ -1,9 +1,11 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,computed } from 'vue'
 import { getCategoryFilterAPI } from '@/apis/category';
 import { useRoute } from 'vue-router'; 
 import { getSubCategoryAPI } from '@/apis/category';  
 import GoodsItem from '../Home/components/GoodsItem.vue';
+import { RecycleScroller } from 'vue-virtual-scroller';
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 const list = ref([])
 const route = useRoute()
 const getList = async()=>{
@@ -43,8 +45,18 @@ const load = async()=>{
   }
 }
 
-
-
+const columnPerRow = 5
+const rows = computed(()=>{
+  const res = []
+  for(let i =0;i<goods.value.length;i+=columnPerRow){
+    res.push({
+      id:`row-${i}`,
+      goods:goods.value.slice(i,i+columnPerRow)
+    })
+  }
+  return res
+})
+const rowHeight = 320
 </script>
 
 <template>
@@ -65,9 +77,16 @@ const load = async()=>{
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
       </el-tabs>
       <div class="body" v-infinite-scroll="load" :infinite-scroll-disabled="disabled">
-         <!-- 商品列表-->
-          <goods-item v-for="good in goods" :good="good" :key="good.id" />
+        <recycle-scroller class="scroller" :items="rows" :item-size="rowHeight" key-field="id" v-slot="{item:row}">
+          <div class="row">
+            <goods-item v-for="good in row.goods" :good="good" :key="good.id" />
+          </div>
+        </recycle-scroller>
       </div>
+      <!--<div class="body" v-infinite-scroll="load" :infinite-scroll-disabled="disabled">-->
+         <!-- 商品列表-->
+          <!--<goods-item v-for="good in goods" :good="good" :key="good.id" />-->
+      <!--</div>-->
     </div>
   </div>
 
@@ -76,6 +95,14 @@ const load = async()=>{
 
 
 <style lang="scss" scoped>
+.scroller{
+  height: 100%;
+  width: 100%;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
 .bread-container {
   padding: 25px 0;
   color: #666;
@@ -86,8 +113,7 @@ const load = async()=>{
   background-color: #fff;
 
   .body {
-    display: flex;
-    flex-wrap: wrap;
+    overflow: auto;
     padding: 0 10px;
   }
 
