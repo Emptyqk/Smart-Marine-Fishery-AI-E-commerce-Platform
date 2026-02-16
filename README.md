@@ -8,22 +8,53 @@ The project simulates real-world e-commerce functionality and emphasizes clean c
 Currently, the core implementation includes address management, covering full Create, Read, Update, and Delete workflows.
 
 ## New function
+### AI Floating Chat Assistant
+
+The AI assistant supports streaming responses (SSE-based rendering) to simulate real-time conversational interaction.
+
+#### Streaming Data Handling
+The chat module reads response streams incrementally and appends content to the assistant message in real time, enhancing user interaction experience.
+
+#### Optimistic UI Rendering
+A placeholder assistant message is inserted before the response arrives, and content is progressively updated during streaming.
+
+#### Decoupled Architecture
+Chat state management and API logic are separated through composables and centralized configuration.
+
+#### Extensible Model Configuration
+Model parameters such as temperature, token limits, and streaming mode are configurable via state management.
+
+This implementation simulates real-world AI customer service integration in modern e-commerce systems.
+
+### SubCategory Product Virtual List Optimization
+
+To improve rendering performance under large datasets, the subCategory product list has been optimized using virtual scrolling techniques.
+
+### Virtual Rendering
+Only visible items within the viewport are rendered to the DOM, significantly reducing memory consumption and improving rendering performance.
+
+### Performance Optimization for Large Data Sets
+The implementation ensures smooth scrolling behavior even when handling large numbers of products.
+
+### Address
 The address module supports complete lifecycle operations:
 
-Create:
+#### Create:
 Users can add a new shipping address via a form with validation.
 
-Read:
+#### Read:
 Existing addresses are fetched and displayed in a structured list.
 
-Update:
+#### Update:
 Users can edit an existing address, with data automatically populated into the form for better user experience.
 
-Delete:
+#### Delete:
 Addresses can be removed with confirmation to prevent accidental deletion.
 
 Default Address Handling:
 Only one address can be set as the default at a time, reflecting real e-commerce business rules.
+
+
 
 ## Tech Stack
 Frontend Framework: Vue 3 (Composition API)
