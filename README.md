@@ -1,7 +1,7 @@
-# xiaotuxian
+# Smart Marine Fishery AI E-commerce Platform
 
 ## Project Overview
-Xiaotuxian is a front-end and e-commerce web application built with Vue3 and Vite, focusing on common bussiness scenarios in online shopping platforms.
+Smart Marine Fishery AI E-commerce Platform is a front-end and e-commerce web application built with Vue3 and Vite, focusing on common bussiness scenarios in online shopping platforms.
 
 The project simulates real-world e-commerce functionality and emphasizes clean component design, state management, and route.
 
